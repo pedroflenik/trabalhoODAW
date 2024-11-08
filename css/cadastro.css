@@ -1,0 +1,49 @@
+
+.divide {
+    height: 100%;
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+
+  .colunaEsquerda {
+    left: 0;
+    background-color: #004aad;
+  }
+  
+
+  .colunaDireita {
+    right: 0;
+    background-color: white;
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+form{
+    margin-top: 50%;
+}
+
+
+.btn{
+    width: 111.16px;
+    height: 38px;
+    margin-left: 55.8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.mostrarSenha{
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+}
