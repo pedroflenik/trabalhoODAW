@@ -1,0 +1,50 @@
+
+
+.navVbar .titulo{
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    text-align: center;
+}
+
+.navVbar {
+    height: 100%;
+    width: 280px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #004aad;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.navVbar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+}
+
+.navVbar a:hover {
+    color: #acacac;
+}
+
+.navVbar .sair{
+    float:left;
+    color:red;
+    margin-top:0px;
+    height:5px;
+}
+
+.main {
+    margin-left: 160px; 
+    font-size: 28px; 
+    padding: 0px 10px;
+}
+
+
+
