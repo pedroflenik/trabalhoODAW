@@ -47,4 +47,21 @@
 }
 
 
+.sair-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 5; 
+    width: 240px;
+}
+
+.sair-btn:hover {
+    background-color: darkred;
+}
 
