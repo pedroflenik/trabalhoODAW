@@ -9,4 +9,3 @@ CREATE TABLE clientes (
     multa DECIMAL(10,2) DEFAULT 0.00
 );
 
-

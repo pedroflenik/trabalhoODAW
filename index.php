@@ -26,7 +26,7 @@
                 <input class="btn btn-primary" type="submit" value="Entrar"><br>
             </form>
             
-            <a href="cadastro.html"><button class="btn btn-primary">Cadastro</button></a>
+            <a href="cadastro.php"><button class="btn btn-primary">Cadastro</button></a>
         </div>
     </div>
 
