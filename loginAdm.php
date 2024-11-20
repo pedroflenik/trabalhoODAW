@@ -13,9 +13,21 @@
 <script>
     
 function mudaParaLoginAdm() {
-    window.location.href = 'loginAdm.php';
+    window.location.href = 'index.php';
 }
 </script>
+
+
+<?php 
+    session_start();
+    if (isset($_SESSION['msg'])) {
+        $msg = $_SESSION['msg'];
+        unset($_SESSION['msg']);
+      } else {
+        $msg = "";
+      }
+?>
+
 <body>
    
     <div class="divide colunaEsquerda">
@@ -26,17 +38,26 @@ function mudaParaLoginAdm() {
 
     <div class="divide colunaDireita">
         <div class="centered">
-            <form action="">
-                <label for="">CPF:</label><br>
-                <input type="text"><br>
+            <form action="php/loginAdm.php" method="post">
+            <?php if (!empty($msg)) : ?>
+                <div 
+                    class="alert alert-danger d-inline-block" 
+                    role="alert" 
+                    style="max-width: fit-content; padding: 10px;">
+                    <?php echo $msg; ?>
+                </div>
+            <?php endif; ?>
+            <h4>Entrando como adiministrador</h4>   
+                <label for="" >CPF:</label><br>
+                <input type="text" name="cpf"><br>
                 <label for="">Senha:</label><br>
-                <input type="passsword"><br>
+                <input type="passsword" name="senha"><br>
                 <input class="btn btn-primary" type="submit" value="Entrar"><br>
             </form>
             
             <a href="cadastro.php"><button class="btn btn-primary">Cadastro</button></a>
 
-            <button class="loginAdm-btn" onclick="mudaParaLoginAdm()">Login Administrador</button>
+            <button class="loginAdm-btn" onclick="mudaParaLoginAdm()">Login Cliente</button>
         </div>
     </div>
 

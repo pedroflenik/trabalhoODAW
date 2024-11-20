@@ -14,10 +14,10 @@
 
     <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
-      <a href="">Teste1</a>
-      <a href="">tsete2</a>
-      <a href="">teste3</a>
-      <a href="">teste3</a>
+      <a href="gerenciarUsuarios.php">Gerenciar usuários</a>
+      <a href="">Gerenciar Livros</a>
+      <a href="">Novo emprestimo</a>
+      <a href="">Nova reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>

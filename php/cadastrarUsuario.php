@@ -69,7 +69,7 @@ function verificaCPF($cpf) {
     if($pd != $chars[10]){
         return 1;
     }
-    $link = mysqli_connect("localhost", "root", "", "biblioteca");  
+    $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");  
 
     $sql = "SELECT cpf FROM clientes WHERE cpf = ?";
     if ($stmt = $link->prepare($sql)) {
@@ -105,6 +105,7 @@ function verificaSenha($senha,$conSenha) {
     if (strlen($senha) < 8) {
         return 1;
     }
+    
     if (!preg_match('/[\W_]/', $senha)) {
         return 2;
     }
@@ -165,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // abre
-    $link = mysqli_connect("localhost", "root", "", "biblioteca");
+    $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
 
     $stmt = mysqli_prepare($link, "INSERT INTO clientes (nome, cpf, senha) VALUES (?, ?, ?)");
 

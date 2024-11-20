@@ -9,3 +9,10 @@ CREATE TABLE clientes (
     multa DECIMAL(10,2) DEFAULT 0.00
 );
 
+CREATE TABLE bibliotecarios (
+    idBibliotecario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    cpf CHAR(11) UNIQUE,
+    senha VARCHAR(100)
+);
+
