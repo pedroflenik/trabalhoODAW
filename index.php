@@ -50,7 +50,7 @@ function mudaParaLoginAdm() {
                 <label for="">CPF:</label><br>
                 <input type="text" name="cpf"><br>
                 <label for="">Senha:</label><br>
-                <input type="passsword" name="senha"><br>
+                <input type="password" name="senha"><br>
                 <input class="btn btn-primary" type="submit" value="Entrar"><br>
             </form>
             
