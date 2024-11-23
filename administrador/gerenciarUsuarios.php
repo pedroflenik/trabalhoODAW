@@ -109,7 +109,7 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
                     <td><?php echo htmlspecialchars($admin['cpf']); ?></td>
                     <td>
                         <a href="editAdmin.php?id=<?php echo $admin['idBibliotecario']; ?>">Editar</a> | 
-                        <a href="deleteAdmin.php?id=<?php echo $admin['idBibliotecario']; ?>">Excluir</a>
+                        <a href="javascript:void(0);" onclick="confirmarExcluirAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -162,7 +162,7 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
                     <td><?php echo htmlspecialchars($clientes['multa']); ?></td>
                     <td>
                        <a href="editAdmin.php?id=<?php echo $clientes['idCliente']; ?>">Editar</a> | 
-                        <a href="deleteAdmin.php?id=<?php echo $clientes['idCliente']; ?>">Excluir</a>
+                       <a href="javascript:void(0);" onclick="confirmarExcluirCliente(<?php echo $clientes['idCliente']; ?>, '<?php echo addslashes($clientes['nome']); ?>', '<?php echo addslashes($clientes['cpf']); ?>')">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

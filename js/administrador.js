@@ -19,3 +19,16 @@ function mostraSenha(){
     }
 
 }
+
+
+function confirmarExcluirAdm(id,nome,cpf){
+    if (confirm("Você tem certeza que desja excluir o seguite administrador:\nNome: " + nome + "\nCPF: " + cpf)) {
+        window.location.href = "../php/deletarAdm.php?id=" + id;
+    }
+}
+
+function confirmarExcluirCliente(id,nome,cpf){
+    if (confirm("Você tem certeza que desja excluir o seguite cliente:\nNome: " + nome + "\nCPF: " + cpf)) {
+        window.location.href = "../php/deletarCliente.php?id=" + id;
+    }
+}
