@@ -14,7 +14,7 @@
 
     <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
-      <a href="gerenciarUsuarios.php">Gerenciar usuários</a>
+      <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="">Gerenciar Livros</a>
       <a href="">Novo emprestimo</a>
       <a href="">Nova reserva</a>

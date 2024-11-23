@@ -22,13 +22,25 @@ if (isset($_SESSION['msg'])) {
   $msg = "";
 }
 
+if (isset($_SESSION['admins']) && !empty($_SESSION['admins'])) {
+    $admins = $_SESSION['admins'];
+} else {
+    $admins = [];
+}
+
+if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
+    $clientes = $_SESSION['clientes'];
+} else {
+    $clientes = [];
+}
+
 ?>
 
 <body>
 
     <div class="navVbar">
       <h3 class="titulo">TITULO</h3>
-      <a href="gerenciarUsuarios.php">Gerenciar usuários</a>
+      <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="">Gerenciar Livros</a>
       <a href="">Novo emprestimo</a>
       <a href="">Nova reserva</a>
@@ -53,9 +65,9 @@ if (isset($_SESSION['msg'])) {
             <label for="" >CPF:</label><br>
             <input type="text" name="cpf"><br>
             <label for="">Senha:</label><br>
-            <input type="password" name="senha"><br>
+            <input id="idSenha" type="password" name="senha"><br>
             <label for="" >Confirmar senha:</label><br>
-            <input type="password" name="conSenha">
+            <input id="idConfirmarSenha" type="password" name="conSenha">
             <input value="Mostrar Senha"type="button" id="idBotaoMostraSenha" onclick="mostraSenha()"class="btn btn-primary mostrarSenha"><br>
             <input class="btn btn-primary" type="submit" value="Cadastrar">
             </form>
@@ -64,35 +76,101 @@ if (isset($_SESSION['msg'])) {
         <hr>
         <br>
         <div>
-            <h4>Consulta de Adimistradores</h4>
-            <form action="">
-            <form action="">
-            <label for="">Nome:</label>
-            <input type="text">
-            <label for="">CPF:</label>
-            <input type="text">
-            <input class="btn btn-primary" type="submit" value="Buscar">
-            </form>
-            <table>
-
-            </table>
+        <h4>Consulta de Administradores</h4>
+<form action="../php/consultaAdm.php" method="post">
+    <?php if (!empty($msg) && $codWhere == 2) : ?>
+        <div 
+            class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+            role="alert" 
+            style="max-width: fit-content; padding: 10px;">
+            <?php echo $msg; ?>
+        </div>
+        <br>
+    <?php endif; ?>
+    <label for="">Nome:</label>
+    <input type="text" name="nome">
+    <label for="">CPF:</label>
+    <input type="text" name="cpf">
+    <input class="btn btn-primary" type="submit" value="Buscar">
+</form>
+<?php if (!empty($admins)) : ?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($admins as $admin) : ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($admin['nome']); ?></td>
+                    <td><?php echo htmlspecialchars($admin['cpf']); ?></td>
+                    <td>
+                        <a href="editAdmin.php?id=<?php echo $admin['idBibliotecario']; ?>">Editar</a> | 
+                        <a href="deleteAdmin.php?id=<?php echo $admin['idBibliotecario']; ?>">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else : ?>
+    <p>Nenhum administrador encontrado.</p>
+<?php endif; ?>
         </div>
         <br>
         <hr>
         <br>
         <div>
             <h4>Consulta de clientes:</h4>
-            <form action="">
-            <form action="">
-            <label for="">Nome:</label>
-            <input type="text">
-            <label for="">CPF:</label>           
-            <input type="text">
-            <label for="">Multado?</label>
-            <input type="checkbox"><br>
-            <input class="btn btn-primary" type="submit" value="Buscar"> 
+            <?php if (!empty($msg) && $codWhere == 3) : ?>
+                <div 
+                    class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+                    role="alert" 
+                    style="max-width: fit-content; padding: 10px;">
+                    <?php echo $msg; ?>
+                </div>
+                <br>
+            <?php endif; ?>
+            <form action="../php/consultaCliente.php" method="post">
+                <label for="">Nome:</label>
+                <input type="text" name="nome">
+                <label for="">CPF:</label>           
+                <input type="text" name="cpf">
+                <label for="">Multado?</label>
+                <input type="checkbox" name="multa"><br>
+                <input class="btn btn-primary bntConsultaClientes" type="submit" value="Buscar"> 
             </form>
-            <table></table>
+ <?php if (!empty($clientes)) : ?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Multa</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($clientes as $clientes) : ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($clientes['nome']); ?></td>
+                    <td><?php echo htmlspecialchars($clientes['cpf']); ?></td>
+                    <td><?php echo htmlspecialchars($clientes['telefone']); ?></td>
+                    <td><?php echo htmlspecialchars($clientes['multa']); ?></td>
+                    <td>
+                       <a href="editAdmin.php?id=<?php echo $clientes['idCliente']; ?>">Editar</a> | 
+                        <a href="deleteAdmin.php?id=<?php echo $clientes['idCliente']; ?>">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else : ?>
+    <p>Nenhum cliente encontrado.</p>
+<?php endif; ?>
         </div>
         <br>
     </div>
