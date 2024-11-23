@@ -128,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($nome == "" || $cpf == "" || $senha == ""){
         $_SESSION['msg'] = "Preencha todos os campos!";
         $_SESSION['msgCOD'] = 1;
+        $_SESSION['codWhere'] = 1;
         header('Location: ../administrador/gerenciarUsuarios.php');
         exit;
     }
@@ -139,11 +140,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 1:
             $_SESSION['msg'] = "Insira um cpf válido";
             $_SESSION['msgCOD'] = 1;
+            $_SESSION['codWhere'] = 1;
             header('Location: ../administrador/gerenciarUsuarios.php');
             exit;
         case 2:
             $_SESSION['msg'] = "Já existe um usuario com seu cpf";
             $_SESSION['msgCOD'] = 1;
+            $_SESSION['codWhere'] = 1;
             header('Location: ../administrador/gerenciarUsuarios.php');
             exit;
     }
@@ -155,11 +158,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 1:
             $_SESSION['msg'] = "A sua senha deve:<br>• Ter no mínimo 8 digitos<br>• Um character especial";
             $_SESSION['msgCOD'] = 1;
+            $_SESSION['codWhere'] = 1;
             header('Location: ../administrador/gerenciarUsuarios.php');
             exit;
         case 3:
             $_SESSION['msg'] = "Os campos:<br>• Senha<br>• Confirmar senha<br>Devem ser iguais";
             $_SESSION['msgCOD'] = 1;
+            $_SESSION['codWhere'] = 1;
             header('Location: ../administrador/gerenciarUsuarios.php');
             exit;
     }
@@ -176,6 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['msg'] = 'Cadastro realizado com sucesso!';
         $_SESSION['msgCOD'] = 0;
+        $_SESSION['codWhere'] = 1;
         // fecha statement e conectcao
         mysqli_stmt_close($stmt);
         mysqli_close($link);
@@ -184,6 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $_SESSION['msg'] = 'Erro ao cadastrar administrador';
         $_SESSION['msgCOD'] = 1;
+        $_SESSION['codWhere'] = 1;
         mysqli_stmt_close($stmt);
         mysqli_close($link);
         header('Location: ../administrador/gerenciarUsuarios.php');

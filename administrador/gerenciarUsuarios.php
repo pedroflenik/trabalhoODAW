@@ -15,6 +15,8 @@ session_start();
 if (isset($_SESSION['msg'])) {
   $msg = $_SESSION['msg'];
   $msgcod = $_SESSION['msgCOD'];
+  $codWhere = $_SESSION['codWhere'];
+  // codWhere diz de onde vem a mesagem
   unset($_SESSION['msg']);
 } else {
   $msg = "";
@@ -37,7 +39,7 @@ if (isset($_SESSION['msg'])) {
         <div>
             <h4>Cadastrar Administrador</h4>
             <form action="../php/cadastrarAdm.php" method="post">
-            <?php if (!empty($msg)) : ?>
+            <?php if (!empty($msg) && $codWhere == 1) : ?>
                 <div 
                     class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
                     role="alert" 
