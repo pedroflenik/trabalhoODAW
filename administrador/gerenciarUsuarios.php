@@ -67,8 +67,7 @@
             <input type="text">
             <label for="">Multado?</label>
             <input type="checkbox"><br>
-            <input class="btn btn-primary" type="submit" value="Buscar">
-            
+            <input class="btn btn-primary" type="submit" value="Buscar"> 
             </form>
             <table></table>
         </div>
