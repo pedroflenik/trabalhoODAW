@@ -1,7 +1,7 @@
 
 
 function sairPag() {
-    window.location.href = '../';
+    window.location.href = '../php/logout.php';
 }
 
 
