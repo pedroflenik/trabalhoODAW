@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
  
     if($cpf == "" && $nome==""){
-        $_SESSION['msg'] = "Preenchas algum dos campos";
+        $_SESSION['msg'] = "Preencha algum dos campos";
         $_SESSION['msgCOD'] = 1; // 1 == erro == 0 sucesso
         $_SESSION['codWhere'] = 2;
         header('Location: ../administrador/gerenciarUsuarios.php');
