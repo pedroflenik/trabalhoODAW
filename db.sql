@@ -19,7 +19,7 @@ CREATE TABLE bibliotecarios (
 
 CREATE TABLE generos (
     idGenero INT AUTO_INCREMENT PRIMARY KEY,
-    genero VARCHAR(50),
+    genero VARCHAR(50)
 );
 
 

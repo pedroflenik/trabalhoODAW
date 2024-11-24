@@ -69,24 +69,22 @@ if (isset($_SESSION['msg'])) {
             <?php echo $msg; ?>
         </div>
         <br>
-
-        
     <?php endif; ?>
-    <form action="">
+    <form action="../php/cadastrarLivro.php" method="post">
         <label for="">ISBN:</label><br>
-        <input type="text"><br>
+        <input type="text" name="isbn"><br>
         
         <label for="">Titulo:</label><br>
-        <input type="text"><br>
+        <input type="text" name="titulo"><br>
         
         <label for="">Autor:</label><br>
-        <input type="text"><br>
+        <input type="text" name="autor"><br>
         
         <label for="">Editora:</label><br>
-        <input type="text"><br>
+        <input type="text" name="editora"><br>
         
         <label for="">Edição:</label><br>
-        <input type="number"><br>
+        <input type="number" name="edicao"><br>
         
         <label for="">Genero:</label><br>
         
@@ -99,7 +97,7 @@ if (isset($_SESSION['msg'])) {
 
                   if ($generos) {
                       echo '<div class="select-container">';
-                      echo '<select class="form-select" aria-label="Default select example">';
+                      echo '<select class="form-select" aria-label="Default select example" name="genero">';
                       echo '<option value="" selected>Selecione o genero</option>';
 
                       while ($genero = mysqli_fetch_assoc($generos)) {
