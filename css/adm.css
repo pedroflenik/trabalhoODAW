@@ -70,6 +70,34 @@
 
 
 
+
+
+.form-select{
+    width: auto !important;
+
+}
+
+
+
+.select-container {
+    display: flex;
+    align-items: center; 
+}
+
+.select-container select {
+    margin-right: 10px;
+}
+
+.select-container button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
 /*MODAL*/
 
 .modal-content {

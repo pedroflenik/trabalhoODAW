@@ -26,6 +26,30 @@ if (isset($_SESSION['msg'])) {
 
 <body>
 
+
+<!-- MODAL cadastro genero -->
+<div class="modal fade" id="cadastroGeneroModal" tabindex="-1" aria-labelledby="cadastroGeneroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadastroGeneroModalLabel">Cadastrar Genero</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="cadastroGeneroForm" action="../php/cadastroGenero.php" method="post">
+                    <input type="hidden" name="id" id="adminId">
+                    <div class="mb-3">
+                        <label for="cadNomeGenero" class="form-label">Nome:</label>
+                        <input type="text" id="cadNomeGenero" name="nomeGenero" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <div class="navVbar">
       <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
@@ -36,14 +60,53 @@ if (isset($_SESSION['msg'])) {
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
     <div class="main">
-        <h4>Cadastrar Livro</h4>
-        <form action="">
+    <h4>Cadastrar Livro</h4>
+     <?php if (!empty($msg) && $codWhere == 1) : ?>
+        <div 
+            class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+            role="alert" 
+            style="max-width: fit-content; padding: 10px;">
+            <?php echo $msg; ?>
+        </div>
+        <br>
+    <?php endif; ?>
+    <form action="">
+        <label for="">ISBN:</label><br>
+        <input type="text"><br>
+        
+        <label for="">Titulo:</label><br>
+        <input type="text"><br>
+        
+        <label for="">Autor:</label><br>
+        <input type="text"><br>
+        
+        <label for="">Editora:</label><br>
+        <input type="text"><br>
+        
+        <label for="">Edição:</label><br>
+        <input type="number"><br>
+        
+        <label for="">Genero:</label><br>
+        
+        <div class="select-container">
+            <select class="form-select" aria-label="Default select example">
+                <option value="" selected>Selecione o genero</option>
+            </select>
+          
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroGeneroModal">+</button>
+        </div><br>
 
-        </form>
+        <input class="btn btn-primary" type="submit" value="Cadastrar">
+    </form>
+</div>
+
+</div>
+
         <br>
         <hr>
         <br>
         <h4>Cadastrar Exemplar</h4>
+
         <form action="">
             
         </form>

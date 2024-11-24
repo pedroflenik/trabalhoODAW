@@ -46,3 +46,5 @@ function openEditModalCliente(id, nome, cpf, multa) {
     document.getElementById('editClienteNome').value = nome;     
     document.getElementById('editClienteMulta').value = multa;   
 }
+
+fu
