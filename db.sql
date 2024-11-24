@@ -33,3 +33,8 @@ CREATE TABLE livros (
     FOREIGN KEY (genero_id) REFERENCES generos(idGenero)
 );
 
+CREATE TABLE exemplares (
+    idExemplar INT AUTO_INCREMENT PRIMARY KEY, 
+    isbn VARCHAR(20),  
+    FOREIGN KEY (isbn) REFERENCES livros(isbn)  
+);

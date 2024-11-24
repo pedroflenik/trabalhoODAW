@@ -50,110 +50,104 @@ if (isset($_SESSION['msg'])) {
 </div>
 
 
-    <div class="navVbar">
-      <h3 class="titulo">TITULO</h3>
-      <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
-      <a href="gerenciarLivros.php">Gerenciar Livros</a>
-      <a href="">Novo emprestimo</a>
-      <a href="">Nova reserva</a>
+  <div class="navVbar">
+    <h3 class="titulo">TITULO</h3>
+    <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
+    <a href="gerenciarLivros.php">Gerenciar Livros</a>
+    <a href="">Novo emprestimo</a>
+    <a href="">Nova reserva</a>
 
-      <button class="sair-btn" onclick="sairPag()">SAIR</button>
-    </div>
-    <div class="main">
+    <button class="sair-btn" onclick="sairPag()">SAIR</button>
+  </div>
+  <div class="main">
     <h4>Cadastrar Livro</h4>
-     <?php if (!empty($msg) && $codWhere == 1) : ?>
-        <div 
-            class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
-            role="alert" 
-            style="max-width: fit-content; padding: 10px;">
-            <?php echo $msg; ?>
-        </div>
-        <br>
+    <?php if (!empty($msg) && $codWhere == 1) : ?>
+      <div 
+          class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+          role="alert" 
+          style="max-width: fit-content; padding: 10px;">
+          <?php echo $msg; ?>
+      </div>
+      <br>
     <?php endif; ?>
     <form action="../php/cadastrarLivro.php" method="post">
-        <label for="">ISBN:</label><br>
-        <input type="text" name="isbn"><br>
-        
-        <label for="">Titulo:</label><br>
-        <input type="text" name="titulo"><br>
-        
-        <label for="">Autor:</label><br>
-        <input type="text" name="autor"><br>
-        
-        <label for="">Editora:</label><br>
-        <input type="text" name="editora"><br>
-        
-        <label for="">Edição:</label><br>
-        <input type="number" name="edicao"><br>
-        
-        <label for="">Genero:</label><br>
-        
-        <div class="select-container">
-           
-                <?php
-                  $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
-                  $query = "SELECT * FROM generos";
-                  $generos = mysqli_query($link, $query);
-
-                  if ($generos) {
-                      echo '<div class="select-container">';
-                      echo '<select class="form-select" aria-label="Default select example" name="genero">';
-                      echo '<option value="" selected>Selecione o genero</option>';
-
-                      while ($genero = mysqli_fetch_assoc($generos)) {
-                          echo '<option value="' . $genero['idGenero'] . '">' . $genero['genero'] . '</option>';
-                      }
-
-                      echo '</select>';
-
-
-                      echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroGeneroModal">+</button>';
-                      echo '</div><br>';
-                  } else {
-                      echo "Error fetching genres: " . mysqli_error($link);
-                  }
-
-                  mysqli_close($link);
-                  ?>
-            </select>
+      <label for="">ISBN:</label><br>
+      <input type="text" name="isbn"><br>
+      
+      <label for="">Titulo:</label><br>
+      <input type="text" name="titulo"><br>
+      
+      <label for="">Autor:</label><br>
+      <input type="text" name="autor"><br>
+      
+      <label for="">Editora:</label><br>
+      <input type="text" name="editora"><br>
+      
+      <label for="">Edição:</label><br>
+      <input type="number" name="edicao"><br>
+      
+      <label for="">Genero:</label><br>
+      
+      <div class="select-container">
           
-        </div><br>
+        <?php
+          $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
+          $query = "SELECT * FROM generos";
+          $generos = mysqli_query($link, $query);
 
-        <input class="btn btn-primary" type="submit" value="Cadastrar">
+          if ($generos) {
+            echo '<div class="select-container">';
+            echo '<select class="form-select" aria-label="Default select example" name="genero">';
+            echo '<option value="" selected>Selecione o genero</option>';
+
+            while ($genero = mysqli_fetch_assoc($generos)) {
+                echo '<option value="' . $genero['idGenero'] . '">' . $genero['genero'] . '</option>';
+            }
+
+            echo '</select>';
+
+
+            echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroGeneroModal">+</button>';
+            echo '</div><br>';
+          } else {
+            echo "Error fetching genres: " . mysqli_error($link);
+          }
+
+          mysqli_close($link);
+          ?>
+      </div><br>
+
+      <input class="btn btn-primary" type="submit" value="Cadastrar">
     </form>
-</div>
-
-</div>
-
-        <br>
-        <hr>
-        <br> 
-        <h4>Cadastrar Exemplar</h4>
-
-        <form action="">
+      <br>
+      <hr>
+      <br> 
+      <h4>Cadastrar Exemplar</h4>
             
-        </form>
-        <br>
-        <hr>
-        <br>
-        <h4>Consuta de Livros</h4>
-        <form action="">
+      <form action="">
+          
+      </form>
+      <br>
+      <hr>
+      <br>
+      <h4>Consuta de Livros</h4>
+      <form action="">
 
-        </form>
-        <table>
+      </form>
+      <table>
 
-        </table>
-        <br>
-        <hr>
-        <br>
-        <h4>Consulta de Exemplares</h4>
-        <form action="">
+      </table>
+      <br>
+      <hr>
+      <br>
+      <h4>Consulta de Exemplares</h4>
+      <form action="">
 
-        </form>
-        <table>
+      </form>
+      <table>
 
-        </table>
+      </table>
     </div>
        
-    </body>
+</body>
 </html>
