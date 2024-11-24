@@ -211,10 +211,12 @@ if (isset($_SESSION['livros']) && !empty($_SESSION['livros'])) {
                           <td><?php echo htmlspecialchars($livros['edicao']); ?></td>
                           <td><?php echo htmlspecialchars($livros['genero_id']); ?></td>
                           <td>
-                            Editar | Excluir | Criar Exemplar
-                          <!-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAdminModal" onclick="openEditModalAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Editar</button> | 
-                          <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExcluirAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Excluir</button> -->
-                          </td>
+                            Editar | 
+                          <!-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAdminModal" onclick="openEditModalAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Editar</button> --> 
+                          <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExluirLivro(<?php echo $livros['isbn']; ?>, '<?php echo addslashes($livros['titulo']); ?>', '<?php echo addslashes($livros['editora']); ?>')">Excluir</button>
+                          | Criar Exemplar
+                        
+                        </td>
                       </tr>
                   <?php endforeach; ?>
               </tbody>
