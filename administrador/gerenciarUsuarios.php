@@ -48,6 +48,65 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
     <div class="main">
+
+
+<!-- ADM edit MODAL -->
+<div class="modal fade" id="editAdminModal" tabindex="-1" aria-labelledby="editAdminModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editAdminModalLabel">Editar Administrador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editAdminForm" action="../php/editarAdm.php" method="post">
+                    <input type="hidden" name="id" id="adminId">
+                    <div class="mb-3">
+                        <label for="editNome" class="form-label">Nome:</label>
+                        <input type="text" id="editNome" name="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCpf" class="form-label">CPF:</label>
+                        <input type="text" id="editCpf" name="cpf" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cliente edit MODAL -->
+<div class="modal fade" id="editClienteModal" tabindex="-1" aria-labelledby="editClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editClienteModalLabel">Editar Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editClienteForm" action="../php/editarCliente.php" method="post">
+                    <input type="hidden" name="id" id="clienteId">
+                    <div class="mb-3">
+                        <label for="editClienteNome" class="form-label">Nome:</label>
+                        <input type="text" id="editClienteNome" name="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editClienteCpf" class="form-label">CPF:</label>
+                        <input type="text" id="editClienteCpf" name="cpf" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editClienteMulta" class="form-label">Multa:</label>
+                        <input type="text" id="editClienteMulta" name="multa" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
         <div>
             <h4>Cadastrar Administrador</h4>
             <form action="../php/cadastrarAdm.php" method="post">
@@ -108,8 +167,8 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
                     <td><?php echo htmlspecialchars($admin['nome']); ?></td>
                     <td><?php echo htmlspecialchars($admin['cpf']); ?></td>
                     <td>
-                        <a href="editAdmin.php?id=<?php echo $admin['idBibliotecario']; ?>">Editar</a> | 
-                        <a href="javascript:void(0);" onclick="confirmarExcluirAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Excluir</a>
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAdminModal" onclick="openEditModalAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Editar</button> | 
+                    <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExcluirAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Excluir</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -154,18 +213,22 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($clientes as $clientes) : ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($clientes['nome']); ?></td>
-                    <td><?php echo htmlspecialchars($clientes['cpf']); ?></td>
-                    <td><?php echo htmlspecialchars($clientes['telefone']); ?></td>
-                    <td><?php echo htmlspecialchars($clientes['multa']); ?></td>
-                    <td>
-                       <a href="editAdmin.php?id=<?php echo $clientes['idCliente']; ?>">Editar</a> | 
-                       <a href="javascript:void(0);" onclick="confirmarExcluirCliente(<?php echo $clientes['idCliente']; ?>, '<?php echo addslashes($clientes['nome']); ?>', '<?php echo addslashes($clientes['cpf']); ?>')">Excluir</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+        <?php foreach ($clientes as $clientes) : ?>
+    <tr>
+        <td><?php echo htmlspecialchars($clientes['nome']); ?></td>
+        <td><?php echo htmlspecialchars($clientes['cpf']); ?></td>
+        <td><?php echo htmlspecialchars($clientes['telefone']); ?></td>
+        <td><?php echo htmlspecialchars($clientes['multa']); ?></td>
+        <td>
+          
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editClienteModal" onclick="openEditModalCliente(<?php echo $clientes['idCliente']; ?>, '<?php echo addslashes($clientes['nome']); ?>', '<?php echo addslashes($clientes['cpf']); ?>','<?php echo addslashes($clientes['multa']); ?>')">Editar</button> | 
+            
+    
+            <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExcluirCliente(<?php echo $clientes['idCliente']; ?>, '<?php echo addslashes($clientes['nome']); ?>', '<?php echo addslashes($clientes['cpf']); ?>')">Excluir</button>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
         </tbody>
     </table>
 <?php else : ?>

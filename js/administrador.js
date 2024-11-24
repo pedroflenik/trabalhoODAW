@@ -32,3 +32,17 @@ function confirmarExcluirCliente(id,nome,cpf){
         window.location.href = "../php/deletarCliente.php?id=" + id;
     }
 }
+
+
+function openEditModalAdm(id, nome, cpf) {
+    document.getElementById('adminId').value = id;              
+    document.getElementById('editNome').value = nome;            
+    document.getElementById('editCpf').value = cpf;             
+}
+
+function openEditModalCliente(id, nome, cpf, multa) {
+    document.getElementById('clienteId').value = id; 
+    document.getElementById('editClienteCpf').value = cpf;             
+    document.getElementById('editClienteNome').value = nome;     
+    document.getElementById('editClienteMulta').value = multa;   
+}
