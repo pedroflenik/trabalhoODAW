@@ -22,6 +22,13 @@ if (isset($_SESSION['msg'])) {
   $msg = "";
 }
 
+
+if (isset($_SESSION['livros']) && !empty($_SESSION['livros'])) {
+  $livros = $_SESSION['livros'];
+} else {
+  $livros = [];
+}
+
 ?>
 
 <body>
@@ -121,22 +128,100 @@ if (isset($_SESSION['msg'])) {
     </form>
       <br>
       <hr>
-      <br> 
-      <h4>Cadastrar Exemplar</h4>
-
-      <form action="">
+      <br>
+      <h4>Consulta de Livros</h4>
+      <?php if (!empty($msg) && $codWhere == 2) : ?>
+      <div 
+          class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+          role="alert" 
+          style="max-width: fit-content; padding: 10px;">
+          <?php echo $msg; ?>
+      </div>
+      <br>
+    <?php endif; ?>
+      <form action="../php/consultarLivros.php" method="post">
+      <label for="">ISBN:</label><br>
+      <input type="text" name="isbn"><br>
+      
+      <label for="">Titulo:</label><br>
+      <input type="text" name="titulo"><br>
+      
+      <label for="">Autor:</label><br>
+      <input type="text" name="autor"><br>
+      
+      <label for="">Editora:</label><br>
+      <input type="text" name="editora"><br>
+      
+      <label for="">Edição:</label><br>
+      <input type="number" name="edicao"><br>
+      
+      <label for="">Genero:</label><br>
+      
+      <div class="select-container">
           
-      </form>
-      <br>
-      <hr>
-      <br>
-      <h4>Consuta de Livros</h4>
-      <form action="">
+        <?php
+          $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
+          $query = "SELECT * FROM generos";
+          $generos = mysqli_query($link, $query);
 
-      </form>
-      <table>
+          if ($generos) {
+            echo '<div class="select-container">';
+            echo '<select class="form-select" aria-label="Default select example" name="genero">';
+            echo '<option value="" selected>Selecione o genero</option>';
 
-      </table>
+            while ($genero = mysqli_fetch_assoc($generos)) {
+                echo '<option value="' . $genero['idGenero'] . '">' . $genero['genero'] . '</option>';
+            }
+
+            echo '</select>';
+
+
+           
+            echo '</div><br>';
+          } else {
+            echo "Error fetching genres: " . mysqli_error($link);
+          }
+
+          mysqli_close($link);
+          ?>
+      </div><br>
+
+      <input class="btn btn-primary" type="submit" value="Buscar">
+      </form>
+      <?php if (!empty($livros)) : ?>
+        <table class="table">
+              <thead>
+                  <tr>
+                      <th>ISBN</th>
+                      <th>Titulo</th>
+                      <th>Autor</th>
+                      <th>Editora</th>
+                      <th>Edição</th>
+                      <th>Genero</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php foreach ($livros as $livros) : ?>
+                      <tr>
+                          <td><?php echo htmlspecialchars($livros['isbn']); ?></td>
+                          <td><?php echo htmlspecialchars($livros['titulo']); ?></td>
+                          <td><?php echo htmlspecialchars($livros['autor']); ?></td>
+                          <td><?php echo htmlspecialchars($livros['editora']); ?></td>
+                          <td><?php echo htmlspecialchars($livros['edicao']); ?></td>
+                          <td><?php echo htmlspecialchars($livros['genero_id']); ?></td>
+                          <td>
+                            Editar | Excluir | Criar Exemplar
+                          <!-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAdminModal" onclick="openEditModalAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Editar</button> | 
+                          <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExcluirAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Excluir</button> -->
+                          </td>
+                      </tr>
+                  <?php endforeach; ?>
+              </tbody>
+          </table>
+      <?php else : ?>
+          <p>Nenhum livro encontrado.</p>
+      <?php endif; ?>
       <br>
       <hr>
       <br>

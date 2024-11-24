@@ -2,12 +2,12 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
     
-    // Retrieve input values
+   
     $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
     $multado = isset($_POST['multa']) ? 1 : 0;
 
-    // Connect to the database
+
     $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
     
     if (!$link) {
@@ -15,38 +15,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $quantParams = 0;
     // SQL Query base
-    $sql = "SELECT * FROM clientes WHERE";
+    $sql = "SELECT * FROM clientes WHERE 1";
 
-    // Prepare the parameters array for binding
     $params = [];
-    $types = '';  // We will dynamically build this
+    $types = '';  
 
-    // Add conditions based on the provided form values
     if ($nome != '') {
-        $sql .= " nome LIKE ?";
+        $sql .= " AND nome LIKE ?";
         $params[] = "%$nome%";
-        $types .= "s";  // "s" stands for string
+        $types .= "s";  
         $quantParams = 1;
-    }
-    if($quantParams == 1){
-        $sql .= " AND ";
     }
 
     if ($cpf != '') {
-        $sql .= " cpf LIKE ?";
+        $sql .= " AND cpf LIKE ?";
         $params[] = "%$cpf%";
-        $types .= "s";  // "s" stands for string
+        $types .= "s";  
         $quantParams = 2;
     }
 
-    if($quantParams == 2){
-        $sql .= " AND";
-    }
-
     if ($multado == 1) {
-        $sql .= " multa > 0";
+        $sql .= " AND multa > 0";
     }else{
-        $sql .= " multa = 0";
+        $sql .= " AND multa = 0";
     }
 
     echo $sql;
