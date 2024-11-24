@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Biblioteca - Cadastro</title>
+    <title>Biblioteca - Gerenciar Usuários</title>
 
     <link rel="stylesheet" href="../css/adm.css">
     <!--Bootstrap-->

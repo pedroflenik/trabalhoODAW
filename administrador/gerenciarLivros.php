@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Biblioteca - Cadastro</title>
+    <title>Biblioteca - Gerenciar Livros</title>
 
     <link rel="stylesheet" href="../css/adm.css">
     <!--Bootstrap-->
@@ -123,7 +123,7 @@ if (isset($_SESSION['msg'])) {
       <hr>
       <br> 
       <h4>Cadastrar Exemplar</h4>
-            
+
       <form action="">
           
       </form>
