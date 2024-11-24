@@ -69,6 +69,8 @@ if (isset($_SESSION['msg'])) {
             <?php echo $msg; ?>
         </div>
         <br>
+
+        
     <?php endif; ?>
     <form action="">
         <label for="">ISBN:</label><br>
@@ -89,11 +91,34 @@ if (isset($_SESSION['msg'])) {
         <label for="">Genero:</label><br>
         
         <div class="select-container">
-            <select class="form-select" aria-label="Default select example">
-                <option value="" selected>Selecione o genero</option>
+           
+                <?php
+                  $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
+                  $query = "SELECT * FROM generos";
+                  $generos = mysqli_query($link, $query);
+
+                  if ($generos) {
+                      echo '<div class="select-container">';
+                      echo '<select class="form-select" aria-label="Default select example">';
+                      echo '<option value="" selected>Selecione o genero</option>';
+
+                      while ($genero = mysqli_fetch_assoc($generos)) {
+                          echo '<option value="' . $genero['idGenero'] . '">' . $genero['genero'] . '</option>';
+                      }
+
+                      echo '</select>';
+
+
+                      echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroGeneroModal">+</button>';
+                      echo '</div><br>';
+                  } else {
+                      echo "Error fetching genres: " . mysqli_error($link);
+                  }
+
+                  mysqli_close($link);
+                  ?>
             </select>
           
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroGeneroModal">+</button>
         </div><br>
 
         <input class="btn btn-primary" type="submit" value="Cadastrar">
@@ -104,7 +129,7 @@ if (isset($_SESSION['msg'])) {
 
         <br>
         <hr>
-        <br>
+        <br> 
         <h4>Cadastrar Exemplar</h4>
 
         <form action="">
