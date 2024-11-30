@@ -35,6 +35,6 @@ CREATE TABLE livros (
 
 CREATE TABLE exemplares (
     idExemplar INT AUTO_INCREMENT PRIMARY KEY, 
-    isbn VARCHAR(20),  
+    isbn VARCHAR(20),
     FOREIGN KEY (isbn) REFERENCES livros(isbn)  
 );

@@ -12,7 +12,7 @@
 
 <body>
 
-<div class="navVbar">
+    <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
@@ -20,6 +20,20 @@
       <a href="">Nova reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
+    </div>
+
+
+    <div class="main">
+
+    <h4>Cadastrar emprestimo</h4>
+
+    <br>
+    <hr>
+    <br>
+    
+
+    <h4>Consultar emprestimos</h4>
+
     </div>
 
        

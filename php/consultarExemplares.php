@@ -4,8 +4,8 @@
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     session_start();
-    unset($_SESSION['livros']);
-    $_SESSION['codWhere'] = 2;
+    unset($_SESSION['exemplares']);
+    $_SESSION['codWhere'] = 3;
 
     $isbn = $_POST['isbn'];
     $titulo = $_POST['titulo'];
@@ -27,13 +27,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     echo "genero: " . htmlspecialchars($genero) . "<br>";
 
-    $sql = "SELECT * FROM livros INNER JOIN generos WHERE 1";
+    $sql = "SELECT e.idExemplar, e.isbn,l.titulo, l.autor, l.editora, l.edicao, g.genero
+    FROM exemplares e
+    INNER JOIN livros l ON e.isbn = l.isbn
+    INNER JOIN generos g ON l.genero_id = g.idGenero WHERE 1
+    ";
     $params = [];
     $types = '';
 
     
     if ($isbn != '') {
-        $sql .= " AND isbn = ?";
+        $sql .= " AND e.isbn = ?";
         $params[] = $isbn;  
         $types .= "s"; 
     }
@@ -88,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $_SESSION['livros'] = $result->fetch_all(MYSQLI_ASSOC);
+            $_SESSION['exemplares'] = $result->fetch_all(MYSQLI_ASSOC);
         }
 
         $stmt->close();

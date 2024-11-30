@@ -38,11 +38,11 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
 
 <body>
 
-    <div class="navVbar">
-      <h3 class="titulo">TITULO</h3>
+<div class="navVbar">
+        <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
-      <a href="">Novo emprestimo</a>
+      <a href="emprestimos.php">Novo emprestimo</a>
       <a href="">Nova reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>

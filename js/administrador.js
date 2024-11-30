@@ -47,8 +47,24 @@ function openEditModalCliente(id, nome, cpf, multa) {
     document.getElementById('editClienteMulta').value = multa;   
 }
 
+
+function openModalCadatrarExemplar(isbn) {
+   console.log(isbn);
+   document.getElementById('isbnExemplar').value = isbn;
+}
+
 function confirmarExluirLivro(isbn,titulo,editora){
     if (confirm("Você tem certeza que desja excluir o livro:\nISBN: " + isbn + "\nTitulo: " + titulo + "\nEditora: " + editora)) {
         window.location.href = "../php/deletarLivro.php?isbn=" + isbn;
+    }
+
+
+
+}
+
+
+function confirmaExcluirExemplar(id,isbn,titulo,editora){
+    if (confirm("Você tem certeza que desja excluir o exemplar:\nID: " + id + "\nISBN: " + isbn + "\nTitulo: " + titulo + "\nEditora: " + editora)) {
+        window.location.href = "../php/deletarExemplar.php?idExemplar=" + id;
     }
 }
