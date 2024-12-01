@@ -84,6 +84,60 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
     </div>
 </div>
 
+<!-- MODAL edição de livros -->
+<div class="modal fade" id="edicaoDeLivroModal" tabindex="-1" aria-labelledby="edicaoDeLivroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edicaoDeLivroModal">Editar livros Exemplar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edicaoDeLivroFrom" action="../php/editarLivro.php" method="post">
+                    <input type="hidden" name="isbn" id="isbnEditarExemplar">
+                    <div class="mb-3">
+                        <label for="tituloLivroId" class="form-label">Título:</label>
+                        <input type="text" id="tituloLivroId" name="titulo" class="form-control" required>
+                        <label for="autorLivroId" class="form-label">Autor:</label>
+                        <input type="text" id="autorLivroId" name="autor" class="form-control" required>
+                        <label for="editoraLivroId" class="form-label">Editora:</label>
+                        <input type="text" id="editoraLivroId" name="editora" class="form-control" required>
+                        <label for="edicaoLivroId" class="form-label">Edição:</label>
+                        <input type="number" id="edicaoLivroId" name="edicao" class="form-control" required>
+                        <br>
+                        <div class="select-container">
+                          <?php
+                            $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
+                            $query = "SELECT * FROM generos";
+                            $generos = mysqli_query($link, $query);
+                  
+                            if ($generos) {
+                              echo '<div class="select-container">';
+                              echo '<select id="selectGeneroEditLivroModal" class="form-select" aria-label="Default select example" name="genero">';
+                              echo '<option value="" selected>Selecione o genero</option>';
+                  
+                              while ($genero = mysqli_fetch_assoc($generos)) {
+                                  echo '<option value="' . $genero['idGenero'] . '">' . $genero['genero'] . '</option>';
+                              }
+                  
+                              echo '</select>';
+            
+                              echo '</div><br>';
+                            } else {
+                              echo "Error fetching genres: " . mysqli_error($link);
+                            }
+                  
+                            mysqli_close($link);
+                            ?>
+                      </div><br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar Mudanças</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
@@ -239,9 +293,18 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
                           <td><?php echo htmlspecialchars($livros['edicao']); ?></td>
                           <td><?php echo htmlspecialchars($livros['genero']); ?></td>
                           <td>
-                            Editar | 
-                          <!-- <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAdminModal" onclick="openEditModalAdm(<?php echo $admin['idBibliotecario']; ?>, '<?php echo addslashes($admin['nome']); ?>', '<?php echo addslashes($admin['cpf']); ?>')">Editar</button> --> 
-                          <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExluirLivro(<?php echo $livros['isbn']; ?>, '<?php echo addslashes($livros['titulo']); ?>', '<?php echo addslashes($livros['editora']); ?>')">Excluir</button>
+                          <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edicaoDeLivroModal" 
+                            onclick="openModalEdicaoLivro(
+                              <?php echo $livros['isbn']; ?>, 
+                              '<?php echo addslashes($livros['titulo']); ?>', 
+                              '<?php echo addslashes($livros['autor']); ?>', 
+                              '<?php echo addslashes($livros['editora']); ?>', 
+                              '<?php echo addslashes($livros['edicao']); ?>', 
+                              '<?php echo addslashes($livros['idGenero']); ?>', 
+                            )">
+                            Editar
+                          </button>
+                          |<button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmarExluirLivro(<?php echo $livros['isbn']; ?>, '<?php echo addslashes($livros['titulo']); ?>', '<?php echo addslashes($livros['editora']); ?>')">Excluir</button>
                           | <button  data-bs-toggle="modal" data-bs-target="#cadastroExemplarModal" onclick="openModalCadatrarExemplar('<?php echo $livros['isbn']; ?>')" type="button" class="btn btn-success" href="javascript:void(0);">Criar Exemplar</button>
                         
                         </td>

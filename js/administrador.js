@@ -62,6 +62,24 @@ function confirmarExluirLivro(isbn,titulo,editora){
 
 }
 
+function openModalEdicaoLivro(isbn,titulo,autor,editora,edicao,genero){
+    document.getElementById('isbnEditarExemplar').value = isbn; 
+    document.getElementById('tituloLivroId').value = titulo;             
+    document.getElementById('autorLivroId').value = autor;     
+    document.getElementById('editoraLivroId').value = editora;   
+    document.getElementById('edicaoLivroId').value = edicao;   
+  
+     let generoSelect = document.getElementById('selectGeneroEditLivroModal');
+    
+  
+     for (let i = 0; i < generoSelect.options.length; i++) {
+         if (generoSelect.options[i].value === genero) {
+             generoSelect.selectedIndex = i; 
+             break;
+         }
+     } 
+}
+
 
 function confirmaExcluirExemplar(id,isbn,titulo,editora){
     if (confirm("Você tem certeza que desja excluir o exemplar:\nID: " + id + "\nISBN: " + isbn + "\nTitulo: " + titulo + "\nEditora: " + editora)) {
