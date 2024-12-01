@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     echo "genero: " . htmlspecialchars($genero) . "<br>";
 
-    $sql = "SELECT * FROM livros INNER JOIN generos WHERE 1";
+    $sql = "SELECT * FROM livros INNER JOIN generos  ON livros.genero_id = generos.idGenero WHERE 1";
     $params = [];
     $types = '';
 
