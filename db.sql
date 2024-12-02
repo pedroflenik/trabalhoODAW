@@ -119,3 +119,14 @@ END $$
 DELIMITER ;
 
 
+CREATE TABLE reservas (
+    idExemplar INT,
+    idCliente INT,
+    dataReserva DATE,
+    dataFinalReserva DATE,  
+    status CHAR(1) DEFAULT 'P',  -- Status do empréstimo (P: pendente,E: entregue, X:expirado)
+    PRIMARY KEY (idExemplar, idCliente, dataReserva), 
+    FOREIGN KEY (idExemplar) REFERENCES exemplares(idExemplar),
+    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
+    INDEX (idExemplar, idCliente)  
+);
