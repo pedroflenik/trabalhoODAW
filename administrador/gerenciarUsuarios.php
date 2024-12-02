@@ -206,6 +206,7 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
     <table class="table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Telefone</th>
@@ -216,6 +217,7 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
         <tbody>
         <?php foreach ($clientes as $clientes) : ?>
     <tr>
+        <td><?php echo htmlspecialchars($clientes['idCliente']); ?></td>
         <td><?php echo htmlspecialchars($clientes['nome']); ?></td>
         <td><?php echo htmlspecialchars($clientes['cpf']); ?></td>
         <td><?php echo htmlspecialchars($clientes['telefone']); ?></td>
