@@ -94,12 +94,13 @@ if (isset($_SESSION['msg'])) {
       <table class="table">
               <thead>
                   <tr>
-                      <th>id exemplar</th>
-                      <th>id cliente</th>
-                      <th>data emprestimo</th>
-                      <th>data devolcao</th>
-                      <th>numero renovacoes</th>
-                      <th>status</th>
+                      <th>ID exemplar</th>
+                      <th>ID cliente</th>
+                      <th>Data emprestimo</th>
+                      <th>Data devolução esperada</th>
+                      <th>Data devolução</th>
+                      <th>Número renovacoes</th>
+                      <th>Status</th>
                       <th>Ações</th>
                   </tr>
               </thead>
@@ -109,6 +110,7 @@ if (isset($_SESSION['msg'])) {
                           <td><?php echo htmlspecialchars($emprestimos['idExemplar']); ?></td>
                           <td><?php echo htmlspecialchars($emprestimos['idCliente']); ?></td>
                           <td><?php echo htmlspecialchars($emprestimos['dataEmprestimo']); ?></td>
+                          <td><?php echo htmlspecialchars($emprestimos['dataEsperadaDevolucao']); ?></td>
                           <td><?php echo htmlspecialchars($emprestimos['dataDevolucao']); ?></td>
                           <td><?php echo htmlspecialchars($emprestimos['numRenovacoes']); ?></td>
                           <td><?php 
@@ -121,11 +123,21 @@ if (isset($_SESSION['msg'])) {
                         }
                           
                           ?></td>
-                          <td>
-                            renovar | devolver
-                          <!-- <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmaExcluirExemplar(<?php echo $exemplares['idExemplar']; ?>,<?php echo $exemplares['isbn']; ?>, '<?php echo addslashes($exemplares['titulo']); ?>', '<?php echo addslashes($exemplares['editora']); ?>')">Excluir</button> -->
-                        
+                        <td>
+                        <?php
+                            if ($emprestimos['status'] == 'D') {
+                                echo '<button type="button" class="btn btn-info" href="javascript:void(0);" onclick="" disabled>Renovar</button>';
+                            } else {
+
+                                $dataEmprestimo = $emprestimos['dataEmprestimo']; 
+                                echo '<button type="button" class="btn btn-info" href="javascript:void(0);" onclick="renovaEmprestimo('
+                                    .$emprestimos['idExemplar'].',' 
+                                    .$emprestimos['idCliente'].', \'' 
+                                    .$dataEmprestimo.'\','.$emprestimos['numRenovacoes'].')">Renovar</button>';
+                            }
+                        ?>
                         </td>
+
                       </tr>
                   <?php endforeach; ?>
               </tbody>

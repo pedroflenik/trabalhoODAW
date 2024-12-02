@@ -187,8 +187,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Cadastro emprestimo
     $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
-    $stmt = mysqli_prepare($link, "INSERT INTO emprestimos (idExemplar, idCliente, dataEmprestimo, dataEsperadaDevolucao) VALUES (?, ?, ?,?)");
-    mysqli_stmt_bind_param($stmt, "iiss", $idExemplar, $idCliente, $dataEmprestimo, $dataEsperada);
+    $stmt = mysqli_prepare($link, "INSERT INTO emprestimos (idExemplar, idCliente, dataEmprestimo, dataEsperadaDevolucao,dataDaUltimaMulta) VALUES (?, ?, ?,?,?)");
+    mysqli_stmt_bind_param($stmt, "iisss", $idExemplar, $idCliente, $dataEmprestimo, $dataEsperada,$dataEsperada);
 
 
     if (mysqli_stmt_execute($stmt)) {

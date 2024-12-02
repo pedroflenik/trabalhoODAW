@@ -9,8 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pendente = isset($_POST['pendente']) ? true : false;
 
 
-
-
     echo "$idExemplar <br>";
     echo "$idCliente <br>";
     echo "$pendente <br>";
@@ -50,34 +48,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($stmt = $link->prepare($sql)) {
-        // Se existirem parâmetros, fazer o bind
+
         if (count($params) > 0) {
             $stmt->bind_param($types, ...$params);
         }
 
-        // Executar a consulta
+
         $stmt->execute();
         
-        // Obter o resultado da consulta
+
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $_SESSION['emprestimos'] = $result->fetch_all(MYSQLI_ASSOC); // Armazena os resultados na sessão
+            $_SESSION['emprestimos'] = $result->fetch_all(MYSQLI_ASSOC); 
         } else {
             $_SESSION['msg'] = 'Nenhum empréstimo encontrado com os critérios fornecidos.';
             $_SESSION['msgCOD'] = 1;
         }
 
-        // Fechar o statement
+        // Ffecha
         $stmt->close();
     } else {
         $_SESSION['msg'] = 'Erro na consulta ao banco de dados.';
         $_SESSION['msgCOD'] = 1;
     }
 
-    // Fechar a conexão
+    // fecha
     mysqli_close($link);
 
-    // Redirecionar para a página de resultados
+    // volta
     header('Location: ../administrador/emprestimos.php');
     exit;
 }

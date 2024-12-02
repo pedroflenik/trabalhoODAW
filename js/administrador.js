@@ -86,3 +86,10 @@ function confirmaExcluirExemplar(id,isbn,titulo,editora){
         window.location.href = "../php/deletarExemplar.php?idExemplar=" + id;
     }
 }
+
+function renovaEmprestimo(idExemplar,idCliente,dataEmprestimo,numRenovacoes){
+    if (confirm("Voce term certeza que deseja renovar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
+        window.location.href = "../php/renovaEmprestimo.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataEmprestimo+"&numRenovacoes="+numRenovacoes;
+    };
+}
+   
