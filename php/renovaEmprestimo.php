@@ -44,9 +44,40 @@ if (!$result) {
     echo "Multas aplicadas e status de empréstimos atualizados com sucesso.";
 }
 
+
+$stmt = mysqli_prepare($link, "SELECT multa FROM clientes WHERE idCliente = ?");
+$multa = 0;
+
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "i", $idCliente);
+
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $multa);
+
+    if (mysqli_stmt_fetch($stmt)) {
+        echo "A multa do cliente é: " . $multa;
+    } else {
+        echo "Nenhum resultado encontrado.";
+    }
+
+    // Fechar a consulta
+    mysqli_stmt_close($stmt);
+} else {
+    echo "Erro ao preparar a consulta: " . mysqli_error($link);
+}
+
+
+if($multa > 0){
+    $_SESSION['msg'] = "Não é possível renovar esse emprestimo, pois o cliente esta multado";
+    $_SESSION['msgCOD'] = 1;
+    $_SESSION['codWhere'] = 2;
+    header('Location: ../administrador/emprestimos.php');
+    exit;
+}
+
 $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
 
-$stmt = mysqli_prepare($link, "UPDATE emprestimos SET numRenovacoes = ?, dataEsperadaDevolucao = ?, status='E' WHERE idExemplar = ? AND idCliente = ? AND dataEmprestimo = ?");
+$stmt = mysqli_prepare($link, "UPDATE emprestimos SET numRenovacoes = ?, dataEsperadaDevolucao = ?,dataDaUltimaMulta = ? data status='E' WHERE idExemplar = ? AND idCliente = ? AND dataEmprestimo = ?");
 
 
 $dataHoje = date('Y-m-d');
@@ -55,7 +86,7 @@ $novaData->modify("+1 week");
 $novaDataFormatada = $novaData->format('Y-m-d'); 
 
 $renovacoes = $numRenovacoes + 1/
-mysqli_stmt_bind_param($stmt, "isiis", $renovacoes, $novaDataFormatada, $idExemplar, $idCliente, $dataEmprestimo);
+mysqli_stmt_bind_param($stmt, "issiis", $renovacoes, $novaDataFormatada,$novaDataFormatada, $idExemplar, $idCliente, $dataEmprestimo);
 
 
 if (mysqli_stmt_execute($stmt)) {
