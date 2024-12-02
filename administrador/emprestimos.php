@@ -38,7 +38,7 @@ if (isset($_SESSION['msg'])) {
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
       <a href="emprestimos.php">Novo emprestimo</a>
-      <a href="">Nova reserva</a>
+      <a href="reservas.php">Nova reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
@@ -136,6 +136,7 @@ if (isset($_SESSION['msg'])) {
                                     .$dataEmprestimo.'\','.$emprestimos['numRenovacoes'].')">Renovar</button>';
                             }
                         ?>
+                        | Entregar
                         </td>
 
                       </tr>
