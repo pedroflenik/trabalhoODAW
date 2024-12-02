@@ -10,7 +10,27 @@
     <link rel="icon" href="../assets/livros.png">
 </head>
 <script src="../js/administrador.js" type="text/javascript"></script>
+<?php
+session_start();
 
+if (isset($_SESSION['msg'])) {
+    $msg = $_SESSION['msg'];
+    $msgcod = $_SESSION['msgCOD'];
+    $codWhere = $_SESSION['codWhere'];
+    // codWhere diz de onde vem a mesagem
+    unset($_SESSION['msg']);
+  } else {
+    $msg = "";
+  }
+
+
+  if (isset($_SESSION['emprestimos']) && !empty($_SESSION['emprestimos'])) {
+    $emprestimos = $_SESSION['emprestimos'];
+  } else {
+    $emprestimos = [];
+  }
+  
+?>
 <body>
 
     <div class="navVbar">
@@ -27,14 +47,92 @@
     <div class="main">
 
     <h4>Cadastrar emprestimo</h4>
-
+    <?php if (!empty($msg) && $codWhere == 1) : ?>
+      <div 
+          class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+          role="alert" 
+          style="max-width: fit-content; padding: 10px;">
+          <?php echo $msg; ?>
+      </div>
+      <br>
+    <?php endif; ?>
+        <form action="../php/cadastroEmprestimo.php" method='post'>
+            <label for="">ID cliente:</label><br>
+            <input type="number" name="idCliente"><br>
+            <label for="">id exemplar:</label><br>
+            <input type="text" name="idExemplar"><br>
+            <label ho for="">Tempo emprestimo (semanas):</label><br> <!-- Tempo max == 2 semanas  -->
+            <input placeholder="MAX 4 semanas" type="number:" name="tempoInicial"><br>
+            <input style="margin-top:5px;" class="btn btn-primary" type="submit" value="Cadastrar emprestimo">  
+        </form>
     <br>
     <hr>
     <br>
     
 
     <h4>Consultar emprestimos</h4>
+    <?php if (!empty($msg) && $codWhere == 2) : ?>
+      <div 
+          class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
+          role="alert" 
+          style="max-width: fit-content; padding: 10px;">
+          <?php echo $msg; ?>
+      </div>
+      <br>
+    <?php endif; ?>
+    <form action="../php/consultaEmprestimos.php" method="post">
+        <label for="">ID exemplar:</label><br>
+        <input type="number" name="idExemplar"><br>
+        <label for="">ID cliente</label><br>
+        <input type="number" name="idCliente"><br>
+        <input name="pendente" style="margin-right: 5px;" type="checkbox"><label for="">Pendente?</label><br>
+        <input style="margin-top:5px;" class="btn btn-primary" type="submit" value="Buscar">  
+    </form>
 
+
+    <?php if (!empty($emprestimos)) : ?>
+      <table class="table">
+              <thead>
+                  <tr>
+                      <th>id exemplar</th>
+                      <th>id cliente</th>
+                      <th>data emprestimo</th>
+                      <th>data devolcao</th>
+                      <th>numero renovacoes</th>
+                      <th>status</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php foreach ($emprestimos as $emprestimos) : ?>
+                      <tr>
+                          <td><?php echo htmlspecialchars($emprestimos['idExemplar']); ?></td>
+                          <td><?php echo htmlspecialchars($emprestimos['idCliente']); ?></td>
+                          <td><?php echo htmlspecialchars($emprestimos['dataEmprestimo']); ?></td>
+                          <td><?php echo htmlspecialchars($emprestimos['dataDevolucao']); ?></td>
+                          <td><?php echo htmlspecialchars($emprestimos['numRenovacoes']); ?></td>
+                          <td><?php 
+                        if($emprestimos['status'] == 'E'){
+                            echo "Emprestado";
+                        }elseif($emprestimos['status'] == 'D'){
+                            echo "Devolvido";
+                        }else{
+                            echo "Atrasado";
+                        }
+                          
+                          ?></td>
+                          <td>
+                            renovar | devolver
+                          <!-- <button type="button" class="btn btn-danger" href="javascript:void(0);" onclick="confirmaExcluirExemplar(<?php echo $exemplares['idExemplar']; ?>,<?php echo $exemplares['isbn']; ?>, '<?php echo addslashes($exemplares['titulo']); ?>', '<?php echo addslashes($exemplares['editora']); ?>')">Excluir</button> -->
+                        
+                        </td>
+                      </tr>
+                  <?php endforeach; ?>
+              </tbody>
+          </table>
+      <?php else : ?>
+          <p>Nenhum emprestimo encontrado.</p>
+      <?php endif; ?>
     </div>
 
        

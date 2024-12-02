@@ -38,3 +38,18 @@ CREATE TABLE exemplares (
     isbn VARCHAR(20),
     FOREIGN KEY (isbn) REFERENCES livros(isbn)  
 );
+
+
+CREATE TABLE emprestimos (
+    idExemplar INT,
+    idCliente INT,
+    dataEmprestimo DATE,
+    dataEsperadaDevolucao DATE,  
+    dataDevolucao DATE NULL,  
+    numRenovacoes INT DEFAULT 0, 
+    status CHAR(1) DEFAULT 'E',  -- Status do empréstimo (E: emprestado,D: devolvido, A:atrasado)
+    PRIMARY KEY (idExemplar, idCliente, dataEmprestimo), 
+    FOREIGN KEY (idExemplar) REFERENCES exemplares(idExemplar),
+    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
+    INDEX (idExemplar, idCliente)  
+);

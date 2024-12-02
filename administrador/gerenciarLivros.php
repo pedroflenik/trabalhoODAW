@@ -36,7 +36,6 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
   $exemplares = [];
 }
 
-
 ?>
 
 <body>
