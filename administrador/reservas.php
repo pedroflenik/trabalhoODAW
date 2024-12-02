@@ -34,6 +34,12 @@ if (isset($_SESSION['msg'])) {
 } else {
   $msg = "";
 }
+
+if (isset($_SESSION['reservas']) && !empty($_SESSION['reservas'])) {
+    $reservas = $_SESSION['reservas'];
+  } else {
+    $reservas = [];
+  }
 ?>
 <script src="../js/administrador.js" type="text/javascript"></script>
 
@@ -43,8 +49,8 @@ if (isset($_SESSION['msg'])) {
         <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
-      <a href="emprestimos.php">Novo emprestimo</a>
-      <a href="">Nova reserva</a>
+      <a href="emprestimos.php">Novo Emprestimo</a>
+      <a href="reservas.php">Nova Reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
@@ -83,7 +89,7 @@ if (isset($_SESSION['msg'])) {
         </div>
         <br>
         <?php endif; ?>
-        <form action="../php/consultarReservas.php" method="post">
+        <form action="../php/consultaReservas.php" method="post">
             <label for="">ID exemplar:</label><br>
             <input type="number" name="idExemplar"><br>
             <label for="">ID cliente</label><br>
@@ -91,7 +97,48 @@ if (isset($_SESSION['msg'])) {
             <input name="pendente" style="margin-right: 5px;" type="checkbox"><label for="">Pendente?</label><br>
             <input style="margin-top:5px;" class="btn btn-primary" type="submit" value="Buscar">  
         </form>
+         
+    <?php if (!empty($reservas)) : ?>
+      <table class="table">
+              <thead>
+                  <tr>
+                      <th>ID exemplar</th>
+                      <th>ID cliente</th>
+                      <th>Data reserva</th>
+                      <th>Data final reserva</th>
+                      <th>Status</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php foreach ($reservas as $reservas) : ?>
+                      <tr>
+                          <td><?php echo htmlspecialchars($reservas['idExemplar']); ?></td>
+                          <td><?php echo htmlspecialchars($reservas['idCliente']); ?></td>
+                          <td><?php echo htmlspecialchars($reservas['dataReserva']); ?></td>
+                          <td><?php echo htmlspecialchars($reservas['dataFinalReserva']); ?></td>
+                          <td><?php 
+                        if($reservas['status'] == 'P'){
+                            echo "Pendente";
+                        }elseif($emprestimos['status'] == 'E'){
+                            echo "Entregue";
+                        }else{
+                            echo "Expirado";
+                        }
+                          
+                          ?></td>
+                        <td>
+                        
+                        Entregar
+                        </td>
 
+                      </tr>
+                  <?php endforeach; ?>
+              </tbody>
+          </table>
+      <?php else : ?>
+          <p>Nenhum emprestimo encontrado.</p>
+      <?php endif; ?>   
     </div>
     </body>
 </html>

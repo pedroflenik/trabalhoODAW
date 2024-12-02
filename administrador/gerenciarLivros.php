@@ -143,8 +143,8 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
       <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
-      <a href="emprestimos.php">Novo emprestimo</a>
-      <a href="reservas.php">Nova reserva</a>
+      <a href="emprestimos.php">Novo Emprestimo</a>
+      <a href="reservas.php">Nova Reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>

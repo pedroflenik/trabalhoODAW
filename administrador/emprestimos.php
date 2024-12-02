@@ -37,8 +37,8 @@ if (isset($_SESSION['msg'])) {
         <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
-      <a href="emprestimos.php">Novo emprestimo</a>
-      <a href="reservas.php">Nova reserva</a>
+      <a href="emprestimos.php">Novo Emprestimo</a>
+      <a href="reservas.php">Nova Reserva</a>
 
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
@@ -70,7 +70,7 @@ if (isset($_SESSION['msg'])) {
     <br>
     
 
-    <h4>Consultar emprestimos</h4>
+    <h4>Consultar Emprestimos</h4>
     <?php if (!empty($msg) && $codWhere == 2) : ?>
       <div 
           class="alert <?php echo ($msgcod == 1) ? 'alert-danger' : 'alert-success'; ?> d-inline-block" 
