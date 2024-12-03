@@ -120,7 +120,7 @@ if (isset($_SESSION['reservas']) && !empty($_SESSION['reservas'])) {
                           <td><?php 
                         if($reservas['status'] == 'P'){
                             echo "Pendente";
-                        }elseif($emprestimos['status'] == 'E'){
+                        }elseif($reservas['status'] == 'E'){
                             echo "Entregue";
                         }else{
                             echo "Expirado";
@@ -129,7 +129,22 @@ if (isset($_SESSION['reservas']) && !empty($_SESSION['reservas'])) {
                           ?></td>
                         <td>
                         
-                        Entregar
+                        <?php 
+                        if($reservas['status'] == 'E' || $reservas['status'] == 'X'){
+                            echo '<button disabled type="button" class="btn btn-success" href="javascript:void(0);" onclick="entregarReserva('
+                            .$reservas['idExemplar'].',' 
+                            .$reservas['idCliente'].', \'' 
+                            .$reservas['dataReserva'].'\')">Entregar</button>';
+                       
+                        }else{
+                            echo '<button type="button" class="btn btn-success" href="javascript:void(0);" onclick="entregarReserva('
+                            .$reservas['idExemplar'].',' 
+                            .$reservas['idCliente'].', \'' 
+                            .$reservas['dataReserva'].'\')">Entregar</button>';
+                       
+                        }
+                        ?>
+
                         </td>
 
                       </tr>

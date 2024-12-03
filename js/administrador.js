@@ -88,13 +88,20 @@ function confirmaExcluirExemplar(id,isbn,titulo,editora){
 }
 
 function renovaEmprestimo(idExemplar,idCliente,dataEmprestimo,numRenovacoes){
-    if (confirm("Voce term certeza que deseja renovar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
+    if (confirm("Você term certeza que deseja renovar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
         window.location.href = "../php/renovaEmprestimo.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataEmprestimo+"&numRenovacoes="+numRenovacoes;
     };
 }
    
 function entregarEmprestimo(idExemplar,idCliente,dataEmprestimo,numRenovacoes){
-    if (confirm("Voce term certeza que deseja entregar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
+    if (confirm("Você term certeza que deseja entregar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
         window.location.href = "../php/entregrarEmprestimo.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataEmprestimo+"&numRenovacoes="+numRenovacoes;
+    };
+}
+
+
+function entregarReserva(idExemplar,idCliente,dataReserva){
+    if (confirm("Você term certeza que deseja a reserva com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA RESERVA == " + dataReserva)) {
+        window.location.href = "../php/entregarReserva.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataReserva;
     };
 }
