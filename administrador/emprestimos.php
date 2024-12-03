@@ -136,7 +136,23 @@ if (isset($_SESSION['msg'])) {
                                     .$dataEmprestimo.'\','.$emprestimos['numRenovacoes'].')">Renovar</button>';
                             }
                         ?>
-                        | Entregar
+                        | 
+                    
+                        <?php 
+                        if($emprestimos['status'] == 'D'){
+                            echo '<button disabled type="button" class="btn btn-success" href="javascript:void(0);" onclick="entregarEmprestimo('
+                            .$emprestimos['idExemplar'].',' 
+                            .$emprestimos['idCliente'].', \'' 
+                            .$emprestimos['dataEmprestimo'].'\','.$emprestimos['numRenovacoes'].')">Entregar</button>';
+                       
+                        }else{
+                            echo '<button type="button" class="btn btn-success" href="javascript:void(0);" onclick="entregarEmprestimo('
+                            .$emprestimos['idExemplar'].',' 
+                            .$emprestimos['idCliente'].', \'' 
+                            .$emprestimos['dataEmprestimo'].'\','.$emprestimos['numRenovacoes'].')">Entregar</button>';
+                       
+                        }
+                        ?>
                         </td>
 
                       </tr>

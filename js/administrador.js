@@ -93,3 +93,8 @@ function renovaEmprestimo(idExemplar,idCliente,dataEmprestimo,numRenovacoes){
     };
 }
    
+function entregarEmprestimo(idExemplar,idCliente,dataEmprestimo,numRenovacoes){
+    if (confirm("Voce term certeza que deseja entregar o emprestimo com:\nID EXEMPLAR == "+ idExemplar + "\nID CLIENTE == "+ idCliente + "\nDATA EMPRESTIMO == " + dataEmprestimo)) {
+        window.location.href = "../php/entregrarEmprestimo.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataEmprestimo+"&numRenovacoes="+numRenovacoes;
+    };
+}
