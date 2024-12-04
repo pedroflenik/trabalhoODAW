@@ -3,6 +3,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     session_start();
+    unset($_SESSION['emprestimos']);
     $idExemplar = $_POST['idExemplar'];
     $idCliente = $_POST['idCliente'];
     $_SESSION['codWhere'] = 2;

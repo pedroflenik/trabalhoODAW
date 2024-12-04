@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
-    
+    unset($_SESSION['clientes']);
    
     $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';

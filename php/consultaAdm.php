@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
+    unset($_SESSION['admins']);
     $nome = $_POST['nome'];
     $cpf = $_POST['cpf'];
  

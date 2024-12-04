@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-
+unset($_SESSION['reservasCliente']);
 $idCliente = $_GET['idCliente'];
 $pendente = isset($_POST['pendente']) ? true : false; 
 $_SESSION['codWhere'] = 2;
