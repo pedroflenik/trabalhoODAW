@@ -32,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->fetch(); 
             echo "ID: " . $id . ", Nome: " . $nome . ", CPF: " . $cpf_result . ", Senha: " . $senha_result; 
             $_SESSION['nomeUsuarioAtual'] = $nome;
+            $_SESSION['idUsuarioAtual'] = $id;
+            $_SESSION['multaUsuarioAtual'] = $multa;
             $stmt->close();
             $link->close();
             header('Location: ../cliente/cliente.php');

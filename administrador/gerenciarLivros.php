@@ -140,7 +140,7 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
 
 
 <div class="navVbar">
-      <h3 class="titulo">TITULO</h3>
+      <h3 class="titulo" style="color:white"><img src="../assets/livros.png" alt="logo livros">    Biblioteca</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
       <a href="multas.php">Multas</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>

@@ -32,7 +32,7 @@ function mudaParaLoginAdm() {
    
     <div class="divide colunaEsquerda">
         <div class="center">
-          <h2>Nome da biblioteca</h2>
+        <h2 style="color:white"><img src="assets/livros.png" alt="logo livros">BIBLIOTECA <img src="assets/livros.png" alt="logo livros"></h2>
         </div>
     </div>
 

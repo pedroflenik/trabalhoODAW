@@ -112,3 +112,8 @@ function pagamentoMultaModal(idCliente,multa){
     document.getElementById('clienteIdMultaId').value = idCliente;
     document.getElementById('multaId').value = multa; 
 }
+
+
+function abrirCadastroReservaModalCliente(idExemplar){
+    document.getElementById('idExemplarReserva').value = idExemplar;
+}
