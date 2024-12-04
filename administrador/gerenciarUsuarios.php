@@ -42,6 +42,7 @@ if (isset($_SESSION['clientes']) && !empty($_SESSION['clientes'])) {
 <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
+      <a href="multas.php">Multas</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
       <a href="emprestimos.php">Novo Emprestimo</a>
       <a href="reservas.php">Nova Reserva</a>

@@ -36,6 +36,7 @@ if (isset($_SESSION['msg'])) {
     <div class="navVbar">
         <h3 class="titulo">TITULO</h3>
       <a href="gerenciarUsuarios.php">Gerenciar Usuários</a>
+      <a href="multas.php">Multas</a>
       <a href="gerenciarLivros.php">Gerenciar Livros</a>
       <a href="emprestimos.php">Novo Emprestimo</a>
       <a href="reservas.php">Nova Reserva</a>
@@ -59,7 +60,7 @@ if (isset($_SESSION['msg'])) {
         <form action="../php/cadastroEmprestimo.php" method='post'>
             <label for="">ID cliente:</label><br>
             <input type="number" name="idCliente"><br>
-            <label for="">id exemplar:</label><br>
+            <label for="">ID exemplar:</label><br>
             <input type="text" name="idExemplar"><br>
             <label ho for="">Tempo emprestimo (semanas):</label><br> <!-- Tempo max == 2 semanas  -->
             <input placeholder="MAX 4 semanas" type="number:" name="tempoInicial"><br>

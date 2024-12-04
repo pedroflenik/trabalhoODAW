@@ -105,3 +105,10 @@ function entregarReserva(idExemplar,idCliente,dataReserva){
         window.location.href = "../php/entregarReserva.php?idExemplar=" + idExemplar + "&idCliente="+idCliente+"&dataEmprestimo="+dataReserva;
     };
 }
+
+
+function pagamentoMultaModal(idCliente,multa){
+    
+    document.getElementById('clienteIdMultaId').value = idCliente;
+    document.getElementById('multaId').value = multa; 
+}
