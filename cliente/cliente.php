@@ -155,7 +155,7 @@ if (isset($_SESSION['reservasCliente']) && !empty($_SESSION['reservasCliente']))
               </tbody>
           </table>
       <?php else : ?>
-          <p>Nenhuma reserva encontrado.</p>
+          <p>Nenhuma reserva encontrada.</p>
       <?php endif; ?>   
 
       </div>
