@@ -148,23 +148,24 @@ INSERT INTO generos (genero) VALUES
 ('Aventura'),
 ('Misterio'),
 ('Ficcao'),
-('Fantasia');
+('Fantasia'),
+('Drama');
 
 
 INSERT INTO livros (isbn, titulo, autor, editora, edicao, genero_id) VALUES
-('9783161484100', 'livro', 'autor', 'editoras', 1, 1), 
-('9780123456789', 'livro', 'autor', 'editora', 2, 4), 
-('9781234567890', 'livro', 'autor', 'editora', 3, 3), 
-('9780321765432', 'livro', 'autor', 'editora', 1, 5), 
-('9781876543210', 'livro', 'autor', 'editora', 1, 2); 
+('9780261102736', 'Silmarilion', 'Tolkien', 'HarperCollins', 1, 5), 
+('9788535901771', 'Cores Proibidas', 'Yukio Mishima', 'Companhia Das Letras', 1, 6), 
+('9788560281527', 'Norwegian Wood', 'Haruki Murakami', 'Alfaguara', 3, 5), 
+('9786555942149', 'Ping Pong - Vol 1', 'Tayo Matsumoto', 'Editora Jbc ', 1, 1), 
+('9788551308431', 'Caixa Patriotismo E Quem Sao Mishimas?', 'Yukio Mishima', 'Autentica Editora', 1, 6); 
 
 INSERT INTO exemplares (isbn) VALUES
-('9783161484100'),
-('9783161484100'),
-('9783161484100'),
-('9780123456789'),
-('9781234567890'),
-('9781234567890'),
-('9780321765432'),
-('9780321765432'),
-('9781876543210');
+('9780261102736'),
+('9780261102736'),
+('9780261102736'),
+('9788535901771'),
+('9788560281527'),
+('9788560281527'),
+('9786555942149'),
+('9786555942149'),
+('9788551308431');
