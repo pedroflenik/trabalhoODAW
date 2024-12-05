@@ -75,9 +75,36 @@ if($multa > 0){
     exit;
 }
 
+
+
 $link = mysqli_connect("localhost", "root", "udesc", "biblioteca");
 
-$stmt = mysqli_prepare($link, "UPDATE emprestimos SET numRenovacoes = ?, dataEsperadaDevolucao = ?,dataDaUltimaMulta = ? data status='E' WHERE idExemplar = ? AND idCliente = ? AND dataEmprestimo = ?");
+$stmt = mysqli_prepare($link, "SELECT dataEsperadaDevolucao FROM emprestimos WHERE idExemplar = ? AND idCliente = ? AND dataEmprestimo = ?");
+$dataEsperadaDevolucao = "";
+
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "iis", $idExemplar,$idCliente, $dataEmprestimo);
+
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $dataEsperadaDevolucao);
+
+    if (mysqli_stmt_fetch($stmt)) {
+        echo "A a data esperada do emprestimo é: " . $dataEsperadaDevolucao;
+    } else {
+        echo "Nenhum resultado encontrado.";
+    }
+
+    // Fechar a consulta
+    mysqli_stmt_close($stmt);
+} else {
+    echo "Erro ao preparar a consulta: " . mysqli_error($link);
+}
+
+
+
+
+
+$stmt = mysqli_prepare($link, "UPDATE emprestimos SET numRenovacoes = ?, dataEsperadaDevolucao = ?,dataDaUltimaMulta = ?, status='E' WHERE idExemplar = ? AND idCliente = ? AND dataEmprestimo = ?");
 
 
 $dataHoje = date('Y-m-d');
@@ -85,7 +112,14 @@ $novaData = new DateTime($dataHoje);
 $novaData->modify("+1 week");
 $novaDataFormatada = $novaData->format('Y-m-d'); 
 
-$renovacoes = $numRenovacoes + 1/
+if($novaDataFormatada <= $dataEsperadaDevolucao){
+    $dataHoje = $dataEsperadaDevolucao;
+    $novaData = new DateTime($dataHoje);
+    $novaData->modify("+1 week");
+    $novaDataFormatada = $novaData->format('Y-m-d'); 
+}
+
+$renovacoes = $numRenovacoes + 1;
 mysqli_stmt_bind_param($stmt, "issiis", $renovacoes, $novaDataFormatada,$novaDataFormatada, $idExemplar, $idCliente, $dataEmprestimo);
 
 
