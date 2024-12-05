@@ -57,9 +57,6 @@ function confirmarExluirLivro(isbn,titulo,editora){
     if (confirm("Você tem certeza que desja excluir o livro:\nISBN: " + isbn + "\nTitulo: " + titulo + "\nEditora: " + editora)) {
         window.location.href = "../php/deletarLivro.php?isbn=" + isbn;
     }
-
-
-
 }
 
 function openModalEdicaoLivro(isbn,titulo,autor,editora,edicao,genero){

@@ -69,7 +69,7 @@ if (isset($_SESSION['exemplares']) && !empty($_SESSION['exemplares'])) {
     <div class="navVbar">
     <h3 class="titulo" style="color:white"><img src="../assets/livros.png" alt="logo livros">    Biblioteca</h3>
       <a href="cliente.php">Emprestimos e Multas</a>
-      <a href="clienteLivros.php">Vizualizar Livros</a>
+      <a href="clienteLivros.php">Visualizar Livros</a>
       <button class="sair-btn" onclick="sairPag()">SAIR</button>
     </div>
 
