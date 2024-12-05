@@ -130,3 +130,41 @@ CREATE TABLE reservas (
     FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
     INDEX (idExemplar, idCliente)  
 );
+
+
+INSERT INTO bibliotecarios (nome,cpf,senha) VALUES ('adm1','123','123');
+
+INSERT INTO clientes (nome, cpf, senha, telefone, multa) VALUES
+('teste', '123', '123', '11997654321', 0.00),
+('João Silva', '12345678901', 'senha123', '11987654321', 0.00),
+('Maria Oliveira', '23456789012', 'senha456', '11976543210', 50.00),
+('Pedro Souza', '34567890123', 'senha789', '11965432109', 10.00),
+('Ana Costa', '45678901234', 'senha101', '11954321098', 0.00),
+('Carlos Pereira', '56789012345', 'senha102', '11943210987', 20.00);
+
+
+INSERT INTO generos (genero) VALUES 
+('Acao'),
+('Aventura'),
+('Misterio'),
+('Ficcao'),
+('Fantasia');
+
+
+INSERT INTO livros (isbn, titulo, autor, editora, edicao, genero_id) VALUES
+('9783161484100', 'livro', 'autor', 'editoras', 1, 1), 
+('9780123456789', 'livro', 'autor', 'editora', 2, 4), 
+('9781234567890', 'livro', 'autor', 'editora', 3, 3), 
+('9780321765432', 'livro', 'autor', 'editora', 1, 5), 
+('9781876543210', 'livro', 'autor', 'editora', 1, 2); 
+
+INSERT INTO exemplares (isbn) VALUES
+('9783161484100'),
+('9783161484100'),
+('9783161484100'),
+('9780123456789'),
+('9781234567890'),
+('9781234567890'),
+('9780321765432'),
+('9780321765432'),
+('9781876543210');
