@@ -169,3 +169,7 @@ INSERT INTO exemplares (isbn) VALUES
 ('9786555942149'),
 ('9786555942149'),
 ('9788551308431');
+
+
+--INSERT INTO emprestimos (idExemplar, idCliente, dataEmprestimo, dataEsperadaDevolucao,dataDaUltimaMulta) VALUES (10, 1, '2024-06-01','2024-06-07','2024-06-07');
+--UPDATE clientes SET multa =0;
